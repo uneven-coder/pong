@@ -1,0 +1,107 @@
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 14px;
+
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* fluid root font-size: scales linearly from 12px at 320px to 18px at 1280px */
+:root {
+    /* 0.625vw = (18 - 12) / (1280) * 100vw  -> produces exact linear interpolation
+         base offset 10px so at 320px: 10px + 0.625%*320 = 12px
+         clamp ensures minimum/maximum */
+    font-size: clamp(12px, calc(10px + 0.625vw), 18px);
+}
+
+
+body {
+    padding: 1rem;
+    /* display: flex; */
+    /* place-items: center; */
+    min-width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #101010;
+}
+
+#app {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    background-color: #242424;
+
+    /* desired "native" size, but scale down to always fit viewport while keeping 4:3 ratio */
+    width: min(800px, 100vw, calc(100vh * 4 / 3));
+    height: auto;
+    aspect-ratio: 4 / 3;
+
+    max-width: 800px;
+    max-height: 600px;
+
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.left {
+    top: 50%;
+    left: 0;
+    transform: translate(1rem, -50%);
+}
+
+.right {
+    top: 50%;
+    right: 0;
+    transform: translate(-1rem, -50%);
+}
+
+.paddle {
+    width: 1rem;
+    height: 14rem;
+    background-color: white;
+    position: absolute;
+    border-radius: 100px;
+}
+
+.devider {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 10px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.269) 53%, rgba(255, 255, 255, 0) 0%);
+    background-position: right;
+    background-size: 1rem 5rem;
+    background-repeat: repeat-y;
+}
+
+/* being used on a p element with 'left/right info' */
+.info {
+    position: fixed;
+    bottom: 1rem;
+    top: auto !important;
+    transform: none !important;
+    padding: 0.5rem 1rem;
+    width: 12rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+}
